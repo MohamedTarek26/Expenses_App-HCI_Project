@@ -15,11 +15,11 @@ class TransactionPage extends StatefulWidget {
 
 class _TransactionPageState extends State<TransactionPage> {
   List<bool> isSelected = [true, false];
-  String? _dropdownvalue;
+  String? _dropdownvalue = 'Select Category';
   DateTime selectedDate = DateTime.now();
   double amount = 0.0;
   String category = "";
-
+  var _controller= TextEditingController();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime picked = (await showDatePicker(
           context: context,
@@ -93,6 +93,10 @@ class _TransactionPageState extends State<TransactionPage> {
             ),
             items: const [
               DropdownMenuItem(
+                value: "Select Category",
+                child: Text("Select Category"),
+              ),
+              DropdownMenuItem(
                 value: "Entertainment",
                 child: Text("Entertainment"),
               ),
@@ -123,6 +127,7 @@ class _TransactionPageState extends State<TransactionPage> {
           ),
           const Gap(30),
           TextField(
+            controller: _controller,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -176,6 +181,7 @@ class _TransactionPageState extends State<TransactionPage> {
                 )
             ),
             onPressed: () {
+              _controller.clear();
               // Create Transaction object and pass it to the callback
               widget.onAddTransaction(
                 Transaction(
