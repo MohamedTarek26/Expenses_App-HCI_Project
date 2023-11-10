@@ -153,10 +153,16 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   final expense = transactions[index];
                   return ListTile(
-                    title: Text(
-                        '${expense.type} on Date: ${expense.date.day}/${expense.date.month}/${expense.date.year}'),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('${expense.category}',style: TextStyle(fontWeight: FontWeight.bold ),),
+                        Text(expense.type=='income' ? '+'+ '\$ ${expense.amount}':'-' +'\$ ${expense.amount}'
+                          ,textAlign: TextAlign.end,style:TextStyle(color: expense.type=='income' ? Colors.green: Colors.red) )
+                      ],
+                    ),
                     subtitle: Text(
-                      'Amount: \$${expense.amount}, Category: ${expense.category}',
+                      '${expense.date.day}/${expense.date.month}/${expense.date.year}',
                     ),
                   );
                 },
