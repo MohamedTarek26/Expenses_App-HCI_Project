@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_transaction.dart';
 import 'transaction.dart';
+import 'under_construction.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,12 +19,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.more_horiz, color: Colors.black, size: 33))
+            onPressed: () {
+              // Custom action when the icon is pressed
+            },
+            icon: const Icon(Icons.more_horiz, color: Colors.black, size: 33),
+          ),
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[300],
         elevation: 0.0,
       ),
       body: Stack(
@@ -156,9 +161,19 @@ class _HomePageState extends State<HomePage> {
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('${expense.category}',style: TextStyle(fontWeight: FontWeight.bold ),),
-                        Text(expense.type=='income' ? '+'+ '\$ ${expense.amount}':'-' +'\$ ${expense.amount}'
-                          ,textAlign: TextAlign.end,style:TextStyle(color: expense.type=='income' ? Colors.green: Colors.red) )
+                        Text(
+                          '${expense.category}',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                            expense.type == 'income'
+                                ? '+' + '\$ ${expense.amount}'
+                                : '-' + '\$ ${expense.amount}',
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                                color: expense.type == 'income'
+                                    ? Colors.green
+                                    : Colors.red))
                       ],
                     ),
                     subtitle: Text(
@@ -187,15 +202,36 @@ class _HomePageState extends State<HomePage> {
               ),
               IconButton(
                 icon: const Icon(Icons.bar_chart, size: 40),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
+                  );
+                },
               ),
               IconButton(
                 icon: const Icon(Icons.receipt_long_outlined, size: 40),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
+                  );
+                },
               ),
               IconButton(
                 icon: const Icon(Icons.person, size: 40),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
+                  );
+                },
               ),
             ],
           ),
