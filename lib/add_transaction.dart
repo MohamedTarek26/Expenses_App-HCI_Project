@@ -53,7 +53,6 @@ class _TransactionPageState extends State<TransactionPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ToggleButtons(
-                isSelected: isSelected,
                 onPressed: (int idx) {
                   setState(() {
                     for (int buttonIndex = 0;
@@ -61,20 +60,23 @@ class _TransactionPageState extends State<TransactionPage> {
                         buttonIndex++) {
                       if (buttonIndex == idx) {
                         isSelected[buttonIndex] = true;
+
                       } else {
                         isSelected[buttonIndex] = false;
                       }
                     }
                   });
                 },
+                isSelected: isSelected,
                 borderRadius: BorderRadius.circular(30),
                 borderWidth: 2,
                 renderBorder: true,
                 selectedBorderColor: Colors.blueGrey,
                 fillColor: Colors.blueGrey,
                 borderColor: Colors.blueGrey,
+
                 constraints:
-                    const BoxConstraints.expand(width: 180, height: 30),
+                    const BoxConstraints.expand(width: 160, height: 30),
                 children: const [
                   Text("income",
                       style: TextStyle(color: Colors.black87, fontSize: 24)),
@@ -147,7 +149,6 @@ class _TransactionPageState extends State<TransactionPage> {
               _selectDate(context);
             },
             child: InputDecorator(
-
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 labelText: 'DATE',
