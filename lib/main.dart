@@ -1,3 +1,4 @@
+import 'package:expenses_hci/login_page.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'welcome.dart';
@@ -11,6 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: WelcomePage(),
+      routes:{
+        "login":(context)=>loginPage(),
+        "home":(context)=>HomePage(),
+      },
     );
   }
 }

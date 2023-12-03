@@ -3,6 +3,7 @@
 import 'package:expenses_hci/home_page.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'package:expenses_hci/login_page.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -43,10 +44,7 @@ class WelcomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Navigate to another page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
+                  Navigator.of(context).pushReplacementNamed("login");
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,
