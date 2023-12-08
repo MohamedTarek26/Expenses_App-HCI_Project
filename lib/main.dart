@@ -1,4 +1,5 @@
 import 'package:expenses_hci/Register.dart';
+import 'package:expenses_hci/accountinfoPage.dart';
 import 'package:expenses_hci/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         "login": (context) => const loginPage(),
         "home": (context) => const HomePage(),
         "Register": (context) => const RegisterPage(),
+        "account info": (context) => const AccountInfo(),
       },
     );
   }
