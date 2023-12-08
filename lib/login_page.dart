@@ -96,7 +96,7 @@ class _loginPage extends State<loginPage> {
                            const Text("Don't have an account?"),
                            const Gap(5),
                            InkWell(
-                             child: const Text("Register",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold)),
+                             child: const Text("Register",style: TextStyle(fontSize: 16, color: Colors.blueAccent,fontWeight: FontWeight.bold)),
                              onTap: (){
                                  Navigator.pushReplacementNamed(context, "Register");
                              },

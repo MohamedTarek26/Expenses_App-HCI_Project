@@ -121,9 +121,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         const Text("Already have an account?"),
                         const Gap(5),
                         InkWell(
-                          child: const Text("Register",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold)),
+                          child: const Text("Sign in",style: TextStyle(fontSize: 16, color: Colors.blueAccent,fontWeight: FontWeight.bold)),
                           onTap: (){
-                            Navigator.pushReplacementNamed(context, "Register");
+                            Navigator.pushReplacementNamed(context, "login");
                           },
                         ),
                       ],
