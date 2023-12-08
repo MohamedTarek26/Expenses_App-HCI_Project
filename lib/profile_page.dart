@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+// ignore_for_file: prefer_const_constructors
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -15,6 +16,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String username="@asser26";
   File? _image;
   String fullName="Asser";
+  bool isGroupsExpanded = false;
   Future<void> _getImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -22,14 +24,13 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[50],
@@ -69,12 +70,36 @@ class _ProfilePageState extends State<ProfilePage> {
             Gap(50),
             Row(
               children: [Gap(20),Icon(Icons.person,color: Colors.grey,size: 30),Gap(20),
-                        InkWell(child: Text("Account info",style: TextStyle(fontSize: 20)),onTap: (){})]
+                        InkWell(child: Text("Account info",style: TextStyle(fontSize: 20)),onTap: (){
+                          Navigator.pushNamed(context,"account info");})]
             ),
             Gap(20),
-            Row(
-                children: [Gap(20),Icon(Icons.group,color: Colors.grey,size: 30),Gap(20),
-                  InkWell(child: Text("Groups",style: TextStyle(fontSize: 20)),onTap: (){})]
+             Row(
+                 children: [Gap(20),Icon(Icons.group,color: Colors.grey,size: 30),Gap(20),
+                   InkWell(child: Text("Groups",style: TextStyle(fontSize: 20)),
+                       onTap: (){setState(() {isGroupsExpanded=!isGroupsExpanded;});
+                       }),
+                 ]
+             ),
+            Column(
+              children: isGroupsExpanded?[
+                Gap(20),
+                Row(
+                    children: [Gap(50),Icon(Icons.add,color: Colors.blue,size: 30),Gap(10),
+                      InkWell(child: Text("Create Group",style: TextStyle(fontSize: 20,color:Colors.blue)),onTap: (){})]
+                ),
+                Gap(20),
+                Row(
+                    children: [Gap(50),Icon(Icons.group_add_rounded,color: Colors.blue,size: 30),Gap(10),
+                      InkWell(child: Text("Join Group",style: TextStyle(fontSize: 20,color: Colors.blue)),onTap: (){})]
+                ),
+                Gap(20),
+                Row(
+                    children: [Gap(50),Icon(Icons.groups,color: Colors.blue,size: 30),Gap(10),
+                      InkWell(child: Text("View Groups",style: TextStyle(fontSize: 20,color: Colors.blue)),onTap: (){})]
+                ),
+                Gap(20)]
+              :[],
             ),
             Gap(20),
             Row(
@@ -92,8 +117,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   InkWell(child: Text("Log Out",style: TextStyle(fontSize: 20,color: Colors.red)),onTap: (){})]
             ),
             Gap(20)
+
           ],
         ),
+
     );
   }
 }
