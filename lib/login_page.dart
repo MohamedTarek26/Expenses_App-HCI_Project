@@ -3,6 +3,8 @@ import 'package:gap/gap.dart';
 
 
 class loginPage extends StatefulWidget {
+  const loginPage({super.key});
+
   @override
   _loginPage createState() => _loginPage();
 }
@@ -23,14 +25,14 @@ class _loginPage extends State<loginPage> {
            child: Center(
              child: Column(
                children: [
-                 Gap(150),
-                 Text('WELCOME',style: TextStyle(
+                 const Gap(150),
+                 const Text('WELCOME',style: TextStyle(
                    color: Colors.white,
                    fontWeight: FontWeight.bold,
                    fontSize: 30,
 
                  )),
-                 Gap(20),
+                 const Gap(20),
                  Container(
                    width: 300,
                    height: 400,
@@ -40,20 +42,20 @@ class _loginPage extends State<loginPage> {
                    ),
                    child: Column(
                      children: [
-                       Gap(50),
+                       const Gap(50),
                        TextField(
                          decoration: InputDecoration(
                              border: const OutlineInputBorder(),
                              label: const Text("USERNAME"),
                              constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                              enabledBorder: OutlineInputBorder(
-                               borderSide: BorderSide(width: 2, color: Colors.blueAccent),
+                               borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
                                borderRadius: BorderRadius.circular(15),
                              )),
                          onChanged: (value) {
                          },
                        ),
-                       Gap(40),
+                       const Gap(40),
                        TextField(
                          keyboardType: TextInputType.visiblePassword,
                          decoration: InputDecoration(
@@ -61,16 +63,16 @@ class _loginPage extends State<loginPage> {
                              label: const Text("PASSWORD"),
                              constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                              enabledBorder: OutlineInputBorder(
-                               borderSide: BorderSide(width: 2, color: Colors.blueAccent),
+                               borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
                                borderRadius: BorderRadius.circular(15),
                              )),
                          onChanged: (value) {
                          },
                        ),
-                       Gap(40),
+                       const Gap(40),
                        Row(
                          children: [
-                           Gap(50),
+                           const Gap(50),
                            ElevatedButton(
                              style: ButtonStyle(
                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -78,23 +80,23 @@ class _loginPage extends State<loginPage> {
                                          borderRadius: BorderRadius.circular(18.0),
                                      )
                                  ),
-                               fixedSize: MaterialStateProperty.all(Size(200,10)),
+                               fixedSize: MaterialStateProperty.all(const Size(200,10)),
                              ),
                              onPressed: () {
                                Navigator.pushReplacementNamed(context,"home");
                              },
-                             child: Text('LOGIN',style: TextStyle(fontSize: 18)),
+                             child: const Text('LOGIN',style: TextStyle(fontSize: 18)),
                            ),
                          ],
                        ),
                        const Gap(30),
                        Row(
                          children: [
-                           Gap(30),
-                           Text("Don't have an account?"),
-                           Gap(5),
+                           const Gap(30),
+                           const Text("Don't have an account?"),
+                           const Gap(5),
                            InkWell(
-                             child: Text("Register",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold)),
+                             child: const Text("Register",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold)),
                              onTap: (){
                                  Navigator.pushReplacementNamed(context, "Register");
                              },

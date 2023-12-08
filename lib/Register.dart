@@ -24,14 +24,14 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Center(
           child: Column(
             children: [
-              Gap(100),
-              Text('REGISTER',style: TextStyle(
+              const Gap(100),
+              const Text('REGISTER',style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
 
               )),
-              Gap(20),
+              const Gap(20),
               Container(
                 width: 300,
                 height: 500,
@@ -41,46 +41,46 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 child: Column(
                   children: [
-                    Gap(40),
+                    const Gap(40),
                     TextField(
                       decoration: InputDecoration(
                           border: const OutlineInputBorder(),
                           label: const Text("Full Name"),
                           constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2, color: Colors.blueAccent),
+                            borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
                             borderRadius: BorderRadius.circular(15),
                           )),
                       onChanged: (value) {
                       },
                     ),
-                    Gap(30),
+                    const Gap(30),
                     TextField(
                       decoration: InputDecoration(
                           border: const OutlineInputBorder(),
                           label: const Text("Email"),
                           constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2, color: Colors.blueAccent),
+                            borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
                             borderRadius: BorderRadius.circular(15),
                           )),
                       onChanged: (value) {
                       },
                     ),
-                    Gap(30),
+                    const Gap(30),
                     TextField(
                       decoration: InputDecoration(
                           border: const OutlineInputBorder(),
                           label: const Text("Username"),
                           constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2, color: Colors.blueAccent),
+                            borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
                             borderRadius: BorderRadius.circular(15),
                           )),
                       onChanged: (value) {
                       },
                     ),
-                    Gap(30),
+                    const Gap(30),
                     TextField(
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
@@ -88,16 +88,16 @@ class _RegisterPageState extends State<RegisterPage> {
                           label: const Text("Password"),
                           constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2, color: Colors.blueAccent),
+                            borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
                             borderRadius: BorderRadius.circular(15),
                           )),
                       onChanged: (value) {
                       },
                     ),
-                    Gap(30),
+                    const Gap(30),
                     Row(
                       children: [
-                        Gap(40),
+                        const Gap(40),
                         ElevatedButton(
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -105,12 +105,26 @@ class _RegisterPageState extends State<RegisterPage> {
                                       borderRadius: BorderRadius.circular(18.0),
                                   )
                               ),
-                            fixedSize: MaterialStateProperty.all(Size(200,10)),
+                            fixedSize: MaterialStateProperty.all(const Size(200,10)),
                           ),
                           onPressed: () {
                             Navigator.pushReplacementNamed(context,"home");
                           },
-                          child: Text('SIGN UP'),
+                          child: const Text('SIGN UP'),
+                        ),
+                      ],
+                    ),
+                    const Gap(30),
+                    Row(
+                      children: [
+                        const Gap(30),
+                        const Text("Already have an account?"),
+                        const Gap(5),
+                        InkWell(
+                          child: const Text("Register",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold)),
+                          onTap: (){
+                            Navigator.pushReplacementNamed(context, "Register");
+                          },
                         ),
                       ],
                     ),
