@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const WelcomePage(),
-      routes:{
-        "login":(context)=>const loginPage(),
-        "home":(context)=>const HomePage(),
-        "Register":(context)=>const RegisterPage(),
+      home: WelcomePage(),
+      routes: {
+        "login": (context) => const loginPage(),
+        "home": (context) => const HomePage(),
+        "Register": (context) => const RegisterPage(),
       },
     );
   }
