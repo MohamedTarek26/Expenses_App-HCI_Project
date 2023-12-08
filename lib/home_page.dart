@@ -1,10 +1,12 @@
-import 'package:expenses_hci/profile_page.dart';
+import 'profile_page.dart';
 import 'package:flutter/material.dart';
 import 'add_transaction.dart';
 import 'transaction.dart';
 import 'under_construction.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -46,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Column(
                 children: [
-                  Align(
+                  const Align(
                     alignment: Alignment.topCenter,
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
@@ -58,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Text(
                     username,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 22.0,
                     ),
                   )
@@ -80,14 +82,14 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Total Balance',
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
-                      budget.toString() + ' \$',
-                      style: TextStyle(color: Colors.white, fontSize: 23),
+                      '$budget \$',
+                      style: const TextStyle(color: Colors.white, fontSize: 23),
                     ),
                   ],
                 ),
@@ -106,14 +108,14 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Today\'s Expense',
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Text(
-                          expenses_value.toString() + ' \$',
-                          style: TextStyle(color: Colors.white, fontSize: 23),
+                          '$expenses_value \$',
+                          style: const TextStyle(color: Colors.white, fontSize: 23),
                         ),
                       ],
                     ),
@@ -128,14 +130,14 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Today\'s Income',
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Text(
-                          incomes_value.toString() + ' \$',
-                          style: TextStyle(color: Colors.white, fontSize: 23),
+                          '$incomes_value \$',
+                          style: const TextStyle(color: Colors.white, fontSize: 23),
                         ),
                       ],
                     ),
@@ -163,13 +165,13 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${expense.category}',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          expense.category,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
                             expense.type == 'income'
-                                ? '+' + '\$ ${expense.amount}'
-                                : '-' + '\$ ${expense.amount}',
+                                ? '+' '\$ ${expense.amount}'
+                                : '-' '\$ ${expense.amount}',
                             textAlign: TextAlign.end,
                             style: TextStyle(
                                 color: expense.type == 'income'
@@ -208,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
+                            const UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
                   );
                 },
               ),
@@ -219,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
+                            const UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
                   );
                 },
               ),
@@ -230,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            ProfilePage()), // Replace SecondPage with the name of the page you want to navigate to
+                            const ProfilePage()), // Replace SecondPage with the name of the page you want to navigate to
                   );
                 },
               ),
