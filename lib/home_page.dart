@@ -1,15 +1,10 @@
-import 'package:expenses_hci/profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'add_transaction.dart';
 import 'transaction.dart';
 import 'under_construction.dart';
-import 'scanning_page.dart';
-import 'dart:convert';
+import 'currency_convertor.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -22,72 +17,6 @@ class _HomePageState extends State<HomePage> {
   String username = 'Hello, Asser!';
 
   @override
-  void initState() {
-    super.initState();
-    // Load transactions from local storage when the widget is created
-    loadTransactions();
-  }
-
-  // Load transactions from local storage
-  Future<void> loadTransactions() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String transactionsJson = prefs.getString('transactions') ?? '[]';
-    print('transactionsJson: $transactionsJson');
-    try {
-      List<Map<String, dynamic>> transactionsMapList =
-          List<Map<String, dynamic>>.from(
-              json.decode(transactionsJson) as List<dynamic>);
-
-      setState(() {
-        transactions = transactionsMapList
-            .map((transactionMap) => Transaction.fromJson(transactionMap))
-            .toList();
-        print('transactions: $transactions');
-        // Calculate incomes, expenses, and budget
-        calculateSummary();
-      });
-    } catch (e) {
-      print('Error decoding transactions: $e');
-      // Handle the error as needed, e.g., show an error message to the user.
-    }
-  }
-
-  // Save transactions to local storage
-  Future<void> saveTransactions() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String transactionsJson =
-        json.encode(transactions.map((t) => t.toJson()).toList());
-    prefs.setString('transactions', transactionsJson);
-    print('Saving ....... transactionsJson: $transactionsJson');
-  }
-
-  // Add this method to handle adding transactions
-  void addTransaction(Transaction transaction) {
-    setState(() {
-      transactions.add(transaction);
-      // Calculate incomes, expenses, and budget
-      calculateSummary();
-
-      // Save transactions to local storage
-      saveTransactions();
-      print("added transaction: $transaction");
-    });
-  }
-
-  // Calculate incomes, expenses, and budget
-  void calculateSummary() {
-    incomes_value = transactions
-        .where((transaction) => transaction.type == 'income')
-        .fold(0, (sum, transaction) => sum + transaction.amount.toInt());
-
-    expenses_value = transactions
-        .where((transaction) => transaction.type == 'expense')
-        .fold(0, (sum, transaction) => sum + transaction.amount.toInt());
-
-    budget = incomes_value - expenses_value;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -95,9 +24,13 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              // Custom action when the icon is pressed
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CurrencyConvertor()),
+              );
             },
-            icon: const Icon(Icons.more_horiz, color: Colors.black, size: 33),
+            icon: const Icon(Icons.currency_exchange_sharp, color: Colors.black, size: 33),
           ),
         ],
         backgroundColor: Colors.grey[300],
@@ -238,16 +171,14 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          expense.type == 'income'
-                              ? '+' + '\$ ${expense.amount}'
-                              : '-' + '\$ ${expense.amount}',
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            color: expense.type == 'income'
-                                ? Colors.green
-                                : Colors.red,
-                          ),
-                        )
+                            expense.type == 'income'
+                                ? '+' + '\$ ${expense.amount}'
+                                : '-' + '\$ ${expense.amount}',
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                                color: expense.type == 'income'
+                                    ? Colors.green
+                                    : Colors.red))
                       ],
                     ),
                     subtitle: Text(
@@ -280,26 +211,20 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => UnderConstruction(),
-                    ),
+                        builder: (context) =>
+                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
                   );
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.receipt_long_outlined, size: 40),
-                onPressed: () async {
-                  final result = await Navigator.push(
+                onPressed: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ScanningPage(
-                        onAddTransaction: (transaction) {
-                          addTransaction(transaction);
-                        },
-                      ),
-                    ),
+                        builder: (context) =>
+                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
                   );
-
-                  print("result $result");
                 },
               ),
               IconButton(
@@ -308,8 +233,8 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ProfilePage(),
-                    ),
+                        builder: (context) =>
+                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
                   );
                 },
               ),
@@ -329,7 +254,15 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                     builder: (context) => TransactionPage(
                       onAddTransaction: (transaction) {
-                        addTransaction(transaction);
+                        setState(() {
+                          transactions.add(transaction);
+                          if (transaction.type == "income") {
+                            incomes_value += transaction.amount.toInt();
+                          } else {
+                            expenses_value += transaction.amount.toInt();
+                          }
+                          budget = incomes_value - expenses_value;
+                        });
                       },
                     ),
                   ),
