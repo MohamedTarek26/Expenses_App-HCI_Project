@@ -1,11 +1,14 @@
-import 'profile_page.dart';
+import 'package:expenses_hci/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'add_transaction.dart';
 import 'transaction.dart';
 import 'under_construction.dart';
+import 'scanning_page.dart';
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -17,6 +20,72 @@ class _HomePageState extends State<HomePage> {
   int expenses_value = 0;
   int budget = 0;
   String username = 'Hello, Asser!';
+
+  @override
+  void initState() {
+    super.initState();
+    // Load transactions from local storage when the widget is created
+    loadTransactions();
+  }
+
+  // Load transactions from local storage
+  Future<void> loadTransactions() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String transactionsJson = prefs.getString('transactions') ?? '[]';
+    print('transactionsJson: $transactionsJson');
+    try {
+      List<Map<String, dynamic>> transactionsMapList =
+          List<Map<String, dynamic>>.from(
+              json.decode(transactionsJson) as List<dynamic>);
+
+      setState(() {
+        transactions = transactionsMapList
+            .map((transactionMap) => Transaction.fromJson(transactionMap))
+            .toList();
+        print('transactions: $transactions');
+        // Calculate incomes, expenses, and budget
+        calculateSummary();
+      });
+    } catch (e) {
+      print('Error decoding transactions: $e');
+      // Handle the error as needed, e.g., show an error message to the user.
+    }
+  }
+
+  // Save transactions to local storage
+  Future<void> saveTransactions() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String transactionsJson =
+        json.encode(transactions.map((t) => t.toJson()).toList());
+    prefs.setString('transactions', transactionsJson);
+    print('Saving ....... transactionsJson: $transactionsJson');
+  }
+
+  // Add this method to handle adding transactions
+  void addTransaction(Transaction transaction) {
+    setState(() {
+      transactions.add(transaction);
+      // Calculate incomes, expenses, and budget
+      calculateSummary();
+
+      // Save transactions to local storage
+      saveTransactions();
+      print("added transaction: $transaction");
+    });
+  }
+
+  // Calculate incomes, expenses, and budget
+  void calculateSummary() {
+    incomes_value = transactions
+        .where((transaction) => transaction.type == 'income')
+        .fold(0, (sum, transaction) => sum + transaction.amount.toInt());
+
+    expenses_value = transactions
+        .where((transaction) => transaction.type == 'expense')
+        .fold(0, (sum, transaction) => sum + transaction.amount.toInt());
+
+    budget = incomes_value - expenses_value;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +117,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Column(
                 children: [
-                  const Align(
+                  Align(
                     alignment: Alignment.topCenter,
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
@@ -60,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Text(
                     username,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 22.0,
                     ),
                   )
@@ -82,14 +151,14 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'Total Balance',
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
-                    const SizedBox(height: 15),
+                    SizedBox(height: 15),
                     Text(
-                      '$budget \$',
-                      style: const TextStyle(color: Colors.white, fontSize: 23),
+                      budget.toString() + ' \$',
+                      style: TextStyle(color: Colors.white, fontSize: 23),
                     ),
                   ],
                 ),
@@ -108,14 +177,14 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'Today\'s Expense',
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: 15),
                         Text(
-                          '$expenses_value \$',
-                          style: const TextStyle(color: Colors.white, fontSize: 23),
+                          expenses_value.toString() + ' \$',
+                          style: TextStyle(color: Colors.white, fontSize: 23),
                         ),
                       ],
                     ),
@@ -130,14 +199,14 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'Today\'s Income',
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: 15),
                         Text(
-                          '$incomes_value \$',
-                          style: const TextStyle(color: Colors.white, fontSize: 23),
+                          incomes_value.toString() + ' \$',
+                          style: TextStyle(color: Colors.white, fontSize: 23),
                         ),
                       ],
                     ),
@@ -165,18 +234,20 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          expense.category,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          '${expense.category}',
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
-                            expense.type == 'income'
-                                ? '+' '\$ ${expense.amount}'
-                                : '-' '\$ ${expense.amount}',
-                            textAlign: TextAlign.end,
-                            style: TextStyle(
-                                color: expense.type == 'income'
-                                    ? Colors.green
-                                    : Colors.red))
+                          expense.type == 'income'
+                              ? '+' + '\$ ${expense.amount}'
+                              : '-' + '\$ ${expense.amount}',
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            color: expense.type == 'income'
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                        )
                       ],
                     ),
                     subtitle: Text(
@@ -209,20 +280,26 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            const UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
+                      builder: (context) => UnderConstruction(),
+                    ),
                   );
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.receipt_long_outlined, size: 40),
-                onPressed: () {
-                  Navigator.push(
+                onPressed: () async {
+                  final result = await Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            const UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
+                      builder: (context) => ScanningPage(
+                        onAddTransaction: (transaction) {
+                          addTransaction(transaction);
+                        },
+                      ),
+                    ),
                   );
+
+                  print("result $result");
                 },
               ),
               IconButton(
@@ -231,8 +308,8 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            const ProfilePage()), // Replace SecondPage with the name of the page you want to navigate to
+                      builder: (context) => const ProfilePage(),
+                    ),
                   );
                 },
               ),
@@ -252,15 +329,7 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                     builder: (context) => TransactionPage(
                       onAddTransaction: (transaction) {
-                        setState(() {
-                          transactions.add(transaction);
-                          if (transaction.type == "income") {
-                            incomes_value += transaction.amount.toInt();
-                          } else {
-                            expenses_value += transaction.amount.toInt();
-                          }
-                          budget = incomes_value - expenses_value;
-                        });
+                        addTransaction(transaction);
                       },
                     ),
                   ),
