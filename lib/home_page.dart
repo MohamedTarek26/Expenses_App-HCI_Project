@@ -1,3 +1,4 @@
+import 'package:expenses_hci/Statistics.dart';
 import 'package:expenses_hci/currency_convertor.dart';
 import 'package:expenses_hci/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -283,12 +284,13 @@ class _HomePageState extends State<HomePage> {
                 icon: const Icon(Icons.bar_chart, size: 40),
                 onPressed: () {
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => StatisticsPage(
-                        transactions: transactions, // Pass the transactions list to StatisticsPage
-                    ),
-                  );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => StatisticsPage(
+                          transactions:
+                              transactions, // Pass the transactions list to StatisticsPage
+                        ),
+                      ));
                 },
               ),
               IconButton(
