@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:expenses_hci/home_page.dart';
+import 'package:expenses_hci/profile_page.dart';
 import 'package:expenses_hci/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -156,7 +157,6 @@ class _ScanningPage extends State<ScanningPage> {
                     type: "expense",
                   ),
                 );
-                amount = 0;
               },
               child: Text("Add expense"),
             ),
@@ -220,7 +220,7 @@ class _ScanningPage extends State<ScanningPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => UnderConstruction(),
+                      builder: (context) => ProfilePage(),
                     ),
                   );
                 },
@@ -283,11 +283,11 @@ class _ScanningPage extends State<ScanningPage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    _showDialog(
-                      context,
-                      "Item $i amount",
-                      "Default text for the dialog",
-                    );
+                    // _showDialog(
+                    //   context,
+                    //   "Item $i amount",
+                    //   "Default text for the dialog",
+                    // );
                   },
                   child: Container(
                     padding: EdgeInsets.all(5.0),
@@ -317,11 +317,11 @@ class _ScanningPage extends State<ScanningPage> {
                 SizedBox(width: 16.0),
                 GestureDetector(
                   onTap: () {
-                    _showDialog(
-                      context,
-                      "Item $i details",
-                      "Default text for the dialog",
-                    );
+                    // _showDialog(
+                    //   context,
+                    //   "Item $i details",
+                    //   "Default text for the dialog",
+                    // );
                   },
                   child: Container(
                     padding: EdgeInsets.all(5.0),
@@ -479,7 +479,7 @@ class _ScanningPage extends State<ScanningPage> {
     String initialText = "None",
   }) {
     TextEditingController textController =
-        TextEditingController(text: initialText);
+        TextEditingController(text: amount.toString());
 
     showDialog(
       context: context,
