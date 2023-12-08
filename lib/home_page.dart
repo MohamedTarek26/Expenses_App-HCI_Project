@@ -285,7 +285,8 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => UnderConstruction(),
+                      builder: (context) => StatisticsPage(
+                        transactions: transactions, // Pass the transactions list to StatisticsPage
                     ),
                   );
                 },
