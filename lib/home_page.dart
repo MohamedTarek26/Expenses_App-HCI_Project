@@ -1,3 +1,4 @@
+import 'package:expenses_hci/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'add_transaction.dart';
 import 'transaction.dart';
@@ -229,7 +230,7 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            UnderConstruction()), // Replace SecondPage with the name of the page you want to navigate to
+                            ProfilePage()), // Replace SecondPage with the name of the page you want to navigate to
                   );
                 },
               ),

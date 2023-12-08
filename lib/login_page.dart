@@ -70,33 +70,34 @@ class _loginPage extends State<loginPage> {
                        Gap(40),
                        Row(
                          children: [
-                           Gap(40),
+                           Gap(50),
                            ElevatedButton(
                              style: ButtonStyle(
                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                      RoundedRectangleBorder(
                                          borderRadius: BorderRadius.circular(18.0),
-                                         side: BorderSide(color: Colors.white)
                                      )
-                                 )
+                                 ),
+                               fixedSize: MaterialStateProperty.all(Size(200,10)),
                              ),
                              onPressed: () {
                                Navigator.pushReplacementNamed(context,"home");
                              },
-                             child: Text('LOG IN'),
+                             child: Text('LOGIN',style: TextStyle(fontSize: 18)),
                            ),
-                           Gap(60),
-                           ElevatedButton(
-                             style: ButtonStyle(
-                                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                     RoundedRectangleBorder(
-                                         borderRadius: BorderRadius.circular(18.0),
-                                         side: BorderSide(color: Colors.white)
-                                     )
-                                 )
-                             ),
-                             onPressed: () {},
-                             child: Text('SIGN UP'),
+                         ],
+                       ),
+                       const Gap(30),
+                       Row(
+                         children: [
+                           Gap(30),
+                           Text("Don't have an account?"),
+                           Gap(5),
+                           InkWell(
+                             child: Text("Register",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold)),
+                             onTap: (){
+                                 Navigator.pushReplacementNamed(context, "Register");
+                             },
                            ),
                          ],
                        ),

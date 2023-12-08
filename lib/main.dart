@@ -1,3 +1,4 @@
+import 'package:expenses_hci/Register.dart';
 import 'package:expenses_hci/login_page.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes:{
         "login":(context)=>loginPage(),
         "home":(context)=>HomePage(),
+        "Register":(context)=>RegisterPage(),
       },
     );
   }

@@ -2,7 +2,6 @@
 
 import 'package:expenses_hci/home_page.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart';
 import 'package:expenses_hci/login_page.dart';
 
 class WelcomePage extends StatelessWidget {
