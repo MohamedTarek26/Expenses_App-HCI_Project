@@ -286,10 +286,13 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProfilePage(
-                          //transactions:
-                            //  transactions, // Pass the transactions list to StatisticsPage
-                        ),
+                        // builder: (context) => ProfilePage(
+                        //   //transactions:
+                        //     //  transactions, // Pass the transactions list to StatisticsPage
+                        // ),
+                        builder: (context) => StatisticsPage(
+                          transactions: transactions,
+                        )
                       ));
                 },
               ),

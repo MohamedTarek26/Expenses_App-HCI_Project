@@ -48,17 +48,8 @@ class _ScanningPage extends State<ScanningPage> {
     return Scaffold(
 
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Custom action when the icon is pressed
-            },
-            icon: const Icon(Icons.more_horiz, color: Colors.black, size: 33),
-          ),
-        ],
-        backgroundColor: Colors.grey[300],
-        elevation: 0.0,
+        title: Text('Scanning Reciept'), 
+        
       ),
       body: Center(
         child: Column(
@@ -164,72 +155,72 @@ class _ScanningPage extends State<ScanningPage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.home,
-                  size: 40,
-                ),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(),
-                    ),
-                  );
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.bar_chart, size: 40),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UnderConstruction(),
-                    ),
-                  );
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.receipt_long_outlined,
-                  size: 40,
-                  color: Color.lerp(
-                    const Color(0xFF31CEC5),
-                    const Color(0xFF314BCE),
-                    0.5,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UnderConstruction(),
-                    ),
-                  );
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.person, size: 40),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfilePage(),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+  //     bottomNavigationBar: BottomAppBar(
+  //       color: Colors.white,
+  //       child: Padding(
+  //         padding: const EdgeInsets.all(10.0),
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //           children: <Widget>[
+  //             IconButton(
+  //               icon: Icon(
+  //                 Icons.home,
+  //                 size: 40,
+  //               ),
+  //               onPressed: () {
+  //                 Navigator.pushReplacement(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                     builder: (context) => HomePage(),
+  //                   ),
+  //                 );
+  //               },
+  //             ),
+  //             IconButton(
+  //               icon: const Icon(Icons.bar_chart, size: 40),
+  //               onPressed: () {
+  //                 Navigator.push(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                     builder: (context) => UnderConstruction(),
+  //                   ),
+  //                 );
+  //               },
+  //             ),
+  //             IconButton(
+  //               icon: Icon(
+  //                 Icons.receipt_long_outlined,
+  //                 size: 40,
+  //                 color: Color.lerp(
+  //                   const Color(0xFF31CEC5),
+  //                   const Color(0xFF314BCE),
+  //                   0.5,
+  //                 ),
+  //               ),
+  //               onPressed: () {
+  //                 Navigator.push(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                     builder: (context) => UnderConstruction(),
+  //                   ),
+  //                 );
+  //               },
+  //             ),
+  //             IconButton(
+  //               icon: const Icon(Icons.person, size: 40),
+  //               onPressed: () {
+  //                 Navigator.push(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                     builder: (context) => ProfilePage(),
+  //                   ),
+  //                 );
+  //               },
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
     );
   }
 
