@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "891681825635",
+    "project_id": "spendio-3c988",
+    "storage_bucket": "spendio-3c988.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891681825635:android:335b5dde69edfa3cc4e956",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDROqqAGA4XzqZ8Z8rbH-XvVfFl3sRZd0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
