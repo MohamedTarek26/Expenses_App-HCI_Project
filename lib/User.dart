@@ -22,16 +22,17 @@ class User {
   //     income: [],
   //     totalBalance: 0.0,
   //   );
-  }
+  // }
 
-  Map<String, dynamic> toFirebaseUser() {
-    // Logic to transform User class to Firebase User
-    return {
-      'username': username,
-      'email': email,
-      'expenses': expenses,
-      'income': income,
-      'totalBalance': totalBalance,
-    };
-  }
+  // Map<String, dynamic> toFirebaseUser() {
+  //   // Logic to transform User class to Firebase User
+  //   return {
+  //     'username': username,
+  //     'email': email,
+  //     'expenses': expenses,
+  //     'income': income,
+  //     'totalBalance': totalBalance,
+  //   };
+  // }
+
 }
