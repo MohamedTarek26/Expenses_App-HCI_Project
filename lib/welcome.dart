@@ -11,16 +11,18 @@ class WelcomePage extends StatelessWidget {
       body: Container(
         width: 414,
         height: 896,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(-1, 6.123234262925839e-17),
-            end: Alignment(6.123234262925839e-17, 1),
-            colors: const [
-              Color.fromRGBO(49, 75, 206, 1),
-              Color.fromRGBO(49, 206, 196, 1),
-            ],
-          ),
-        ),
+        // decoration: BoxDecoration(
+        //   gradient: LinearGradient(
+        //     begin: Alignment(-1, 6.123234262925839e-17),
+        //     end: Alignment(6.123234262925839e-17, 1),
+        //     colors: const [
+        //       Color.fromRGBO(49, 75, 206, 1),
+        //       Color.fromRGBO(49, 206, 196, 1),
+        //     ],
+        //   ),
+        // ),
+        color: Color.fromRGBO(49, 206, 196, 1),
+
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -56,8 +58,8 @@ class WelcomePage extends StatelessWidget {
                   child: Text(
                     "Let's Get Started",
                     style: TextStyle(
-                      color: Color.fromRGBO(
-                          49, 75, 206, 1), // Same color as the page
+                      color: Color.fromRGBO(49, 206, 196, 1),
+ // Same color as the page
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),

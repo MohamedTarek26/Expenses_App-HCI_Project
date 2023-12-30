@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.0.12
+  path_provider: ^2.0.15
 
   image_picker: ^1.0.4
   fl_chart: ^0.40.0 # Use the latest version of fl_chart

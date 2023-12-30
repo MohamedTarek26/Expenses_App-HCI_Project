@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:expenses_hci/home_page.dart';
 import 'package:expenses_hci/profile_page.dart';
 import 'package:expenses_hci/transaction.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -48,14 +49,28 @@ class _ScanningPage extends State<ScanningPage> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text('Scanning Reciept'), 
+        backgroundColor: Color.fromARGB(255, 56, 208, 213),
+        centerTitle: true,
+        // toolbarHeight: 80.0,
+        elevation: 0,
+        leading: const BackButton(color: Colors.black,style: ButtonStyle()),
+        title: Text('Scanning Reciept'
+            ,style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold
+        ),
+        ), 
         
       ),
-      body: Center(
+      body: 
+      
+      Center(
+        
         child: Column(
           children: [
             Container(
-              height: 140,
+              padding: const EdgeInsets.all(20),
+              height: 180,
               width: 180,
               color: Colors.black12,
               child: file == null
@@ -131,11 +146,13 @@ class _ScanningPage extends State<ScanningPage> {
               ),
             ),
             ElevatedButton(
+              
               style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 56, 208, 213)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.white),
+                    // side: BorderSide(color: Colors.white),
                   ),
                 ),
               ),
@@ -150,7 +167,16 @@ class _ScanningPage extends State<ScanningPage> {
                   ),
                 );
               },
-              child: Text("Add expense"),
+              child: Text(
+              
+                "Add expense",
+               style: TextStyle(
+                // height: 1,
+                // backgroundColor: Color.fromARGB(255, 56, 208, 213),
+                      color: Colors.white,
+                      fontSize:20,
+                    ),
+                ),
             ),
           ],
         ),

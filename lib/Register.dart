@@ -33,13 +33,14 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(-1, 6.123234262925839e-17),
-            end: Alignment(6.123234262925839e-17, 1),
-            colors: [Color.fromRGBO(49, 75, 206, 1), Color.fromRGBO(49, 206, 196, 1),],
-          ),
-        ),
+        // decoration: const BoxDecoration(
+        //   gradient: LinearGradient(
+        //     begin: Alignment(-1, 6.123234262925839e-17),
+        //     end: Alignment(6.123234262925839e-17, 1),
+        //     colors: [Color.fromRGBO(49, 75, 206, 1), Color.fromRGBO(49, 206, 196, 1),],
+        //   ),
+        // ),
+        color: Color.fromRGBO(49, 206, 196, 1),
         child: Center(
           child: Column(
             children: [
@@ -68,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           label: const Text("Full Name"),
                           constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
+                            borderSide: const BorderSide(width: 2, color: Color.fromRGBO(49, 206, 196, 1)),
                             borderRadius: BorderRadius.circular(15),
                           )),
                       onChanged: (value) {
@@ -82,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           label: const Text("Email"),
                           constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
+                            borderSide: const BorderSide(width: 2, color: Color.fromRGBO(49, 206, 196, 1)),
                             borderRadius: BorderRadius.circular(15),
                           )),
                       onChanged: (value) {
@@ -96,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           label: const Text("Username"),
                           constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
+                            borderSide: const BorderSide(width: 2, color: Color.fromRGBO(49, 206, 196, 1)),
                             borderRadius: BorderRadius.circular(15),
                           )),
                       onChanged: (value) {
@@ -111,18 +112,24 @@ class _RegisterPageState extends State<RegisterPage> {
                           label: const Text("Password"),
                           constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15),
+                          borderSide: const BorderSide(width: 2, color: Color.fromRGBO(49, 206, 196, 1)),
+                          borderRadius: BorderRadius.circular(15),
                           )),
                       onChanged: (value) {
                       },
                     ),
                     const Gap(30),
+        
                     Row(
                       children: [
                         const Gap(40),
+                        Center(
+                          child:
                         ElevatedButton(
+                          
                           style: ButtonStyle(
+                            
+                            backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(49, 206, 196, 1)),
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
@@ -137,32 +144,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                 password: _passwordController.text,
 
                               );
-                              //                             final transaction1 = trans.Transaction(
-                              //   date: DateTime(2023, 1, 15),
-                              //   amount: 100.0,
-                              //   category: 'Groceries',
-                              //   type: 'expense',
-                              // );
-                              // print(transaction1);
-                              // print(transaction1.toJson());
-                              // final transaction2 = trans.Transaction(
-                              //   date: DateTime(2023, 1, 20),
-                              //   amount: 250.0,
-                              //   category: 'Salary',
-                              //   type: 'income',
-                              // );
-                              // print(transaction2);
-
-                              // final transaction3 = trans.Transaction(
-                              //   date: DateTime(2023, 1, 10),
-                              //   amount: 50.0,
-                              //   category: 'Dining out',
-                              //   type: 'expense',
-                              // );
-                              // print(transaction3);
-                              //                           List< Map<String, dynamic>> dummy = [transaction1.toJson(),transaction2.toJson()];
-
-
                               // Create a document in Firestore for additional user information
                               await _firestore.collection('users').doc(_emailController.text).set({
                                 'username': _usernameController.text,
@@ -189,8 +170,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             }
 
                           },
-                          child: const Text('SIGN UP'),
+                          child: const Text('Register',style: TextStyle(fontSize: 18, color:Colors.white,fontWeight: FontWeight.bold)),
                         ),
+                    ),
                       ],
                     ),
                     const Gap(30),
@@ -200,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         const Text("Already have an account?"),
                         const Gap(5),
                         InkWell(
-                          child: const Text("Sign in",style: TextStyle(fontSize: 16, color: Colors.blueAccent,fontWeight: FontWeight.bold)),
+                          child: const Text("Sign in",style: TextStyle(fontSize: 16, color: Color.fromRGBO(49, 206, 196, 1),fontWeight: FontWeight.bold)),
                           onTap: (){
                             Navigator.pushReplacementNamed(context, "login");
                           },

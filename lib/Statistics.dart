@@ -49,10 +49,21 @@ class StatisticsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Statistics - ${months[currentMonth - 1]}'), // Display month name
+        backgroundColor: Color.fromARGB(255, 56, 208, 213),
+        centerTitle: true,
+        
+        // toolbarHeight: 80.0,
+        elevation: 0,
+        leading: const BackButton(color: Colors.black,style: ButtonStyle()),
+        title: Text('Statistics - ${months[currentMonth - 1]}'
+        ,style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold
+        ),
+        ), // Display month name
       ),
       body: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(15),
         height: 350,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

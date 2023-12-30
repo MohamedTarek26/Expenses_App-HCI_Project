@@ -20,15 +20,8 @@ class _UnderConstruction extends State<UnderConstruction> {
               child: Container(
                   width: 417,
                   height: 893,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment(-1, 6.123234262925839e-17),
-                        end: Alignment(6.123234262925839e-17, 1),
-                        colors: [
-                          Color.fromRGBO(49, 75, 206, 1),
-                          Color.fromRGBO(49, 206, 196, 1)
-                        ]),
-                  ))),
+                  color: Color.fromRGBO(49, 206, 196, 1)
+                  )),
           Positioned(
             top: 60,
             left: 10,

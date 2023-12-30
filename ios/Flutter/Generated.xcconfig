@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\flutter
-FLUTTER_APPLICATION_PATH=D:\projectHci\Expenses_App-HCI_Project
+FLUTTER_ROOT=C:\flutter\flutter
+FLUTTER_APPLICATION_PATH=C:\Users\Pc\Desktop\App\Expenses_App-HCI_Project
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=lib\main.dart
 FLUTTER_BUILD_DIR=build
