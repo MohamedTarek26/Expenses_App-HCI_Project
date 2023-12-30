@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 // ignore_for_file: prefer_const_constructors
 
 class ProfilePage extends StatefulWidget {
@@ -29,7 +31,34 @@ class _ProfilePageState extends State<ProfilePage> {
       }
     });
   }
+  @override
+  void initState() {
+    super.initState();
+    updateData();
+  }
+ Future<void> updateData() async {
+    String? updatedUsername = await getUserNamesFromLS();
+    String? updatedFullName = await getUserFullNamesFromLS();
 
+    setState(() {
+      username = updatedUsername ?? username;
+      fullName = updatedFullName ?? fullName;
+    });
+  }
+Future<String?> getUserNamesFromLS() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('username');
+  }
+Future<String?> getUserFullNamesFromLS() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('username');
+  }
+  Future<String> updateUsername() async {
+   return await getUserNamesFromLS() ?? '';
+  }
+  Future<String> updateFullName() async {
+   return await getUserFullNamesFromLS() ?? '';
+  }
   @override
   Widget build(BuildContext context) {
 

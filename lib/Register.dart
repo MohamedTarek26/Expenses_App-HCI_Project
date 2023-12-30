@@ -1,8 +1,12 @@
+// import 'dart:js_util';
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'transaction.dart' as trans;
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -16,6 +20,13 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
+  Future<void> storeUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('userEmail',_emailController.text);
+    prefs.setString('username', _usernameController.text);
+    prefs.setString('fullName', _fullNameController.text);
+      }
 
   @override
   Widget build(BuildContext context) {
@@ -112,11 +123,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         const Gap(40),
                         ElevatedButton(
                           style: ButtonStyle(
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                  )
-                              ),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                )
+                            ),
                             fixedSize: MaterialStateProperty.all(const Size(200,10)),
                           ),
                           onPressed: () async {
@@ -124,12 +135,47 @@ class _RegisterPageState extends State<RegisterPage> {
                               final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
                                 email: _emailController.text ,
                                 password: _passwordController.text,
+
                               );
+                              //                             final transaction1 = trans.Transaction(
+                              //   date: DateTime(2023, 1, 15),
+                              //   amount: 100.0,
+                              //   category: 'Groceries',
+                              //   type: 'expense',
+                              // );
+                              // print(transaction1);
+                              // print(transaction1.toJson());
+                              // final transaction2 = trans.Transaction(
+                              //   date: DateTime(2023, 1, 20),
+                              //   amount: 250.0,
+                              //   category: 'Salary',
+                              //   type: 'income',
+                              // );
+                              // print(transaction2);
+
+                              // final transaction3 = trans.Transaction(
+                              //   date: DateTime(2023, 1, 10),
+                              //   amount: 50.0,
+                              //   category: 'Dining out',
+                              //   type: 'expense',
+                              // );
+                              // print(transaction3);
+                              //                           List< Map<String, dynamic>> dummy = [transaction1.toJson(),transaction2.toJson()];
+
+
                               // Create a document in Firestore for additional user information
-                              await _firestore.collection('users').doc(userCredential.user?.email).set({
+                              await _firestore.collection('users').doc(_emailController.text).set({
                                 'username': _usernameController.text,
                                 'fullName': _fullNameController.text,
+                                'email': _emailController.text,
+                                'password': _passwordController.text,
+                                'transactions': [],
                               });
+                              await storeUserData();
+
+                              print(_usernameController.text);
+                              print(_fullNameController.text);
+                              print(_passwordController.text);
                               Navigator.pushReplacementNamed(context,"home");
                               print('User registered: ${userCredential.user?.uid}');
                             } on FirebaseAuthException catch (e) {

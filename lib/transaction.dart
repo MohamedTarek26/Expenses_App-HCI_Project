@@ -3,13 +3,14 @@ class Transaction {
   double amount;
   String category;
   String type;
-
+  
   Transaction({
     required this.date,
     required this.amount,
     required this.category,
     required this.type,
   });
+  
 
   factory Transaction.fromJson(Map<String, dynamic> json) {
     return Transaction(

@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class loginPage extends StatefulWidget {
@@ -23,6 +26,22 @@ class _loginPage extends State<loginPage> {
         errorMessage="";
       }
     });
+  }
+    Future<void> storeUserEmail(String? userEmail) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('userEmail', userEmail ?? '');
+    if (userEmail != null) {
+      DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+      await FirebaseFirestore.instance.collection('users').doc(userEmail).get();
+      if (userSnapshot.exists && userSnapshot.data() != null &&
+          userSnapshot.data()!.containsKey('username')) {
+        print(userSnapshot.get('username'));
+        print(userSnapshot.get('fullName'));
+        print("test");
+        prefs.setString('username', userSnapshot.get('username'));
+        prefs.setString('fullName', userSnapshot.get('fullName'));
+      }
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -60,7 +79,7 @@ class _loginPage extends State<loginPage> {
                          controller: _emailController,
                          decoration: InputDecoration(
                              border: const OutlineInputBorder(),
-                             label: const Text("email"),
+                             label: const Text("EMAIL"),
                              constraints: const BoxConstraints(maxWidth: 250, maxHeight: 40),
                              enabledBorder: OutlineInputBorder(
                                borderSide: const BorderSide(width: 2, color: Colors.blueAccent),
@@ -107,7 +126,7 @@ class _loginPage extends State<loginPage> {
                                      email: _emailController.text,
                                      password: _passwordController.text,
                                  );
-
+                                await storeUserEmail(_emailController.text);
                                  Navigator.pushReplacementNamed(context,"home");
                                } on FirebaseAuthException catch (e) {
                                  showError(false);
