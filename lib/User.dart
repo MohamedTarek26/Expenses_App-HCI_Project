@@ -13,15 +13,15 @@ class User {
     required this.totalBalance,
   });
 
-  factory User.fromFirebaseUser(FirebaseUser firebaseUser) {
-    // Logic to transform Firebase User to User class
-    return User(
-      username: firebaseUser.displayName ?? '',
-      email: firebaseUser.email ?? '',
-      expenses: [],
-      income: [],
-      totalBalance: 0.0,
-    );
+  // factory User.fromFirebaseUser(FirebaseUser firebaseUser) {
+  //   // Logic to transform Firebase User to User class
+  //   return User(
+  //     username: firebaseUser.displayName ?? '',
+  //     email: firebaseUser.email ?? '',
+  //     expenses: [],
+  //     income: [],
+  //     totalBalance: 0.0,
+  //   );
   }
 
   Map<String, dynamic> toFirebaseUser() {
