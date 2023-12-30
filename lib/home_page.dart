@@ -651,19 +651,34 @@ class _HomePageState extends State<HomePage> {
       ),
         
       bottomNavigationBar: BottomAppBar(
-        color: Color.fromARGB(255, 56, 208, 213),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
+        child: Container(
+          // width: MediaQuery.of(context).size.width ,
+          // height: 150,
+
+          decoration: const BoxDecoration(
+          gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.deepPurple, Colors.blue], // Define your gradient colors
+           ),
+          ),
+        // color: Color.fromARGB(255, 56, 208, 213),
+        // child: Padding(
+        
+          // padding: const EdgeInsets.all(10.0),
+            // width: MediaQuery.of(context).size.width * 0.85,
+        
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            
             children: <Widget>[
               IconButton(
                 icon: Icon(
                   Icons.home,
                   size: 40,
                   color: Color.lerp(
-                    const Color(0xFF31CEC5),
-                    const Color(0xFF314BCE),
+                    Color.fromARGB(255, 97, 97, 97),
+                    Color.fromARGB(255, 0, 0, 0),
                     0.5,
                   ),
                 ),
@@ -711,9 +726,11 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-        ),
+        // ),
+      ),
       ),
       floatingActionButton: FloatingActionButton(
+        
         onPressed: () async {
           final result = await Navigator.push(
             context,
