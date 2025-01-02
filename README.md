@@ -1,16 +1,8 @@
-# expenses_hci
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Expenses_App-HCI_Project
+### Team :
+- <a href="https://github.com/asserelzeki6">Asser Ossama</a>
+- <a href="https://github.com/esmailMahmouds">Ismail Mahmoud</a>
+- <a href="https://github.com/mahfouz72">Mohamad Mahfouz</a>
+- <a href="https://github.com/shifeau">Mohamad Sherif</a>
+- <a href="https://github.com/Mohamedtarek26">Mohamed Tarek</a>
+- <a href="https://github.com/YoussifKhaled">Youssif Khaled</a>
